@@ -2,12 +2,11 @@
   padding-left: 0;
   padding-right: 10px;
   font-size: 80%;
+  vertical-align: top;
 }
 
 .calendar .symbol span {
   display: inline-block;
-  -ms-transform: translate(0, 2px); /* IE 9 */
-  -webkit-transform: translate(0, 2px); /* Safari */
   transform: translate(0, 2px);
 }
 
@@ -19,4 +18,5 @@
 .calendar .time {
   padding-left: 30px;
   text-align: right;
+  vertical-align: top;
 }

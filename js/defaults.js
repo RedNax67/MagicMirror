@@ -1,21 +1,36 @@
-/* exported defaults */
+/* global mmPort */
 
 /* Magic Mirror
- * Config Defauls
+ * Config Defaults
  *
- * By Michael Teeuw http://michaelteeuw.nl
+ * By Michael Teeuw https://michaelteeuw.nl
  * MIT Licensed.
  */
-
+var address = "localhost";
+var port = 8080;
+if (typeof mmPort !== "undefined") {
+	port = mmPort;
+}
 var defaults = {
-	port: 8080,
+	address: address,
+	port: port,
+	basePath: "/",
 	kioskmode: false,
+	electronOptions: {},
+	ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1"],
 
 	language: "en",
+	logLevel: ["INFO", "LOG", "WARN", "ERROR"],
 	timeFormat: 24,
 	units: "metric",
+	zoom: 1,
+	customCss: "css/custom.css",
 
 	modules: [
+		{
+			module: "updatenotification",
+			position: "top_center"
+		},
 		{
 			module: "helloworld",
 			position: "upper_third",
@@ -28,7 +43,7 @@ var defaults = {
 			module: "helloworld",
 			position: "middle_center",
 			config: {
-				text: "Please create a config file."
+				text: "Please create a config file or check the existing one for errors."
 			}
 		},
 		{
@@ -44,7 +59,7 @@ var defaults = {
 			position: "middle_center",
 			classes: "xsmall",
 			config: {
-				text: "If you get this message while your config file is already<br>created, your config file probably contains an error.<br>Use a JavaScript linter to validate your file."
+				text: "If you get this message while your config file is already created,<br>" + "it probably contains an error. To validate your config file run in your MagicMirror directory<br>" + "<pre>npm run config:check</pre>"
 			}
 		},
 		{
@@ -54,14 +69,16 @@ var defaults = {
 			config: {
 				text: "www.michaelteeuw.nl"
 			}
-		},
+		}
 	],
 
 	paths: {
 		modules: "modules",
 		vendor: "vendor"
-	},
+	}
 };
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/
-if (typeof module !== "undefined") {module.exports = defaults;}
+if (typeof module !== "undefined") {
+	module.exports = defaults;
+}
